@@ -17,10 +17,12 @@ package com.example;
         cliente2.setRenda(2000);
         cliente2.setSexo('F');
         cliente2.setAnoNascimento(1970);
+        System.out.println();
 
         System.out.println("Renda: " + cliente2.getRenda());
         System.out.println("Sexo: " + cliente2.getSexo());
         System.out.println("Ano de Nascimento: " + cliente2.getAnoNascimento());
+        System.out.println("Especial: " + cliente2.isEspecial());
 
 
 
