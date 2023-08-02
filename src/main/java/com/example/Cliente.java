@@ -1,10 +1,40 @@
 package com.example;
 
 public class Cliente {
+    private String cpf;
+    private String nome;
+    private String cidade;
     private double renda;
-    private char sexo;
+  
+public String getCidade() {
+    return cidade;
+}
+public void setCidade(String cidade) {
+    this.cidade = cidade;
+}
+  private char sexo;
     private int anoNascimento;
     private boolean especial;
+
+    public String getCpf() {
+        return cpf;
+    }
+    
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome.isBlank()) {
+            System.out.println("Nome é obrigatório");
+        } else {
+            this.nome = nome.trim().toUpperCase();
+        }
+    }
 
     public boolean isEspecial() {
         return especial;
