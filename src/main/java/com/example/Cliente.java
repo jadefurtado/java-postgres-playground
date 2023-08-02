@@ -15,11 +15,18 @@ public class Cliente {
     }
 
     public Cliente(){
-        System.out.println("Criando um Cliente");
+        System.out.println("Criando um Cliente usando o construtor sem parâmetros");
         double aleatorio = Math.random();
         if (aleatorio > 0.5) {
             especial = true;
         }
+    }
+
+    public Cliente(double renda, char sexo){
+        this();
+        System.out.println("Criando um Cliente usando o construtor com parâmetros");
+        setRenda(renda);
+        this.sexo = sexo;
     }
 
     public char getSexo() {
@@ -51,7 +58,7 @@ public class Cliente {
         if (renda >=0) {
             this.renda = renda;
         } else {
-            System.out.println("A renda deve ser maior do que zero");
+            System.out.println("A renda deve ser maior ou igual a zero");
         }
     }
 }

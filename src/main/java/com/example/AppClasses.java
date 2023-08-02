@@ -5,18 +5,17 @@ package com.example;
         System.out.println("Criando classes");
 
         Cliente cliente = new Cliente();
-        cliente.setRenda(1000);
+        cliente.setRenda(-1000);
         cliente.setSexo('M');
         cliente.setAnoNascimento(1980);
 
         System.out.println("Renda: " + cliente.getRenda());
         System.out.println("Sexo: " + cliente.getSexo());
         System.out.println("Ano de Nascimento: " + cliente.getAnoNascimento());
+        System.out.println("Especial: " + cliente.isEspecial());
 
-        Cliente cliente2 = new Cliente();
-        cliente2.setRenda(2000);
-        cliente2.setSexo('F');
-        cliente2.setAnoNascimento(1970);
+
+        Cliente cliente2 = new Cliente(-2000, 'F');
         System.out.println();
 
         System.out.println("Renda: " + cliente2.getRenda());
