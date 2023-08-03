@@ -45,7 +45,7 @@ public void setCidade(String cidade) {
     }
 
     public Cliente(){
-        System.out.println("Criando um Cliente usando o construtor sem parâmetros");
+       // System.out.println("Criando um Cliente usando o construtor sem parâmetros");
         double aleatorio = Math.random();
         if (aleatorio > 0.5) {
             especial = true;
@@ -54,7 +54,7 @@ public void setCidade(String cidade) {
 
     public Cliente(double renda, char sexo){
         this();
-        System.out.println("Criando um Cliente usando o construtor com parâmetros");
+       // System.out.println("Criando um Cliente usando o construtor com parâmetros");
         setRenda(renda);
         this.sexo = sexo;
     }
