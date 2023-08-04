@@ -6,7 +6,7 @@ public class AppScanner {
     public static void main(String[] args) {
         System.out.println("Criando classes");
 
-        Cliente cliente = new Cliente();
+        /* Cliente cliente = new Cliente();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o nome: ");
@@ -33,7 +33,7 @@ public class AppScanner {
         System.out.println("Renda: " + cliente.getRenda());
         System.out.println("Sexo: " + cliente.getSexo());
         System.out.println("Ano de Nascimento: " + cliente.getAnoNascimento());
-        System.out.println("Especial: " + cliente.isEspecial());
+        System.out.println("Especial: " + cliente.isEspecial()); */
 
 
 

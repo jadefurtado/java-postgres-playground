@@ -9,11 +9,15 @@ public class AppOperadoresRelacionais {
         var cliente2 = new Cliente();
         cliente2.setAnoNascimento(1980);
 
-        if(cliente1.getAnoNascimento() > cliente2.getAnoNascimento()){
+        boolean cliente1MaisJovem = cliente1.getAnoNascimento() > cliente2.getAnoNascimento();
+        boolean cliente1MaisVelho = cliente1.getAnoNascimento() < cliente2.getAnoNascimento();
+
+        if(cliente1MaisJovem){
             System.out.println("O cliente1 é mais jovem que o cliente 2");
-        } else if(cliente1.getAnoNascimento() < cliente2.getAnoNascimento()) {
+        } else if(cliente1MaisVelho) {
             System.out.println("O cliente 1 é mais velho que o cliente 2");
         }
-        else System.out.println("Os clientes têm a mesma idade");
+        else
+            System.out.println("Os clientes têm a mesma idade");
     }
 }
