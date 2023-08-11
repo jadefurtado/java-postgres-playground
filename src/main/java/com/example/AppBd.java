@@ -19,9 +19,32 @@ public class AppBd {
         //    carregarDriverJDBC();            atualmente não precisamos mais carregar o driver
             listarEstados(conn);
             localizarEstado(conn, "TO"); 
-            listarDadosTabela(conn, "cliente");
+
+            var marca = new Marca();
+            marca.setId(1L);
+
+            var produto = new Produto();
+            produto.setMarca(marca);
+            produto.setValor(120);
+            produto.setNome("Produto teste 5");
+            
+            inserirProduto(conn, produto);
+            listarDadosTabela(conn, "produto");
+
         } catch (SQLException e) {
             System.err.println("Não foi possível conectar ao banco de dados: " + e.getMessage());
+        }
+    }
+
+    private void inserirProduto(Connection conn, Produto produto) {
+        var sql = "insert into produto (nome, marca_id, valor) values (?, ?, ?)";
+        try (var statement = conn.prepareStatement(sql)) {
+            statement.setString(1, produto.getNome());
+            statement.setLong(2, produto.getMarca().getId());
+            statement.setDouble(3, produto.getValor());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erro na execução da consulta. " + e.getMessage());
         }
     }
 
