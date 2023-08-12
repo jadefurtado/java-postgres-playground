@@ -21,20 +21,49 @@ public class AppBd {
             localizarEstado(conn, "TO"); 
 
             var marca = new Marca();
-            marca.setId(1L);
+            marca.setId(2L);
 
             var produto = new Produto();
+            produto.setId(201L);
             produto.setMarca(marca);
-            produto.setValor(120);
-            produto.setNome("Produto teste 5");
+            produto.setValor(90);
+            produto.setNome("Produto Novo");
             
-            inserirProduto(conn, produto);
+            //inserirProduto(conn, produto);
+            excluirProduto(conn, 202L);
+            alterarProduto(conn, produto);
             listarDadosTabela(conn, "produto");
 
         } catch (SQLException e) {
             System.err.println("Não foi possível conectar ao banco de dados: " + e.getMessage());
         }
     }
+
+    private void excluirProduto(Connection conn, long id) {
+        var sql = "detele from produto where id = ?";
+        try (var statement = conn.prepareStatement(sql)) {
+            statement.setLong(1, id);
+            if (statement.executeUpdate() == 1)
+                System.out.println("Produto excluído com sucesso");
+            else System.out.println("Produto não foi localizado");
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir o produto: " + e.getMessage());
+        }
+    }
+
+    private void alterarProduto(Connection conn, Produto produto) {
+        var sql = "update produto set nome = ?, marca_id = ?, valor = ? where id = ?";
+        try (var statement = conn.prepareStatement(sql)) {
+            statement.setString(1, produto.getNome());
+            statement.setLong(2, produto.getMarca().getId());
+            statement.setDouble(3, produto.getValor());
+            statement.setLong(4, produto.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erro na alteração do produto: " + e.getMessage());
+        }
+    }
+
 
     private void inserirProduto(Connection conn, Produto produto) {
         var sql = "insert into produto (nome, marca_id, valor) values (?, ?, ?)";
