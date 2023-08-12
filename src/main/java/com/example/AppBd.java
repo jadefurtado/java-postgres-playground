@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.example.model.Marca;
+import com.example.model.Produto;
+
 
 public class AppBd {
     private static final String PASSWORD = "";
