@@ -4,24 +4,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.example.dao.ConnectionManager;
+import com.example.dao.EstadoDAO;
 import com.example.model.Marca;
 import com.example.model.Produto;
 
 
 public class AppBd {
-    private static final String PASSWORD = "";
-    private static final String USERNAME = "gitpod";
-    private static final String JDBC_URL = "jdbc:postgresql://localhost/postgres";
-
     public static void main(String[] args) { 
         new AppBd();
     }
 
     public AppBd() {  
-        try(var conn = getConnection()) {
+        try(var conn = ConnectionManager.getConnection()) {
         //    carregarDriverJDBC();            atualmente não precisamos mais carregar o driver
-            listarEstados(conn);
-            localizarEstado(conn, "TO"); 
+            var estadoDAO = new EstadoDAO(conn);
+            estadoDAO.listar();
+            estadoDAO.localizar("TO"); 
 
             var marca = new Marca();
             marca.setId(2L);
@@ -106,40 +105,7 @@ public class AppBd {
         }
     }
 
-    private  void localizarEstado(Connection conn, String uf) {
-        try {
-            //var sql = "select * from estado where uf = '" + uf + "'"; >>> suscetível a SQL injection!!
-            var sql = "select * from estado where uf = ?";
-            var statement = conn.prepareStatement(sql);
-            System.out.println(sql);
-            statement.setString(1, uf);
-            var result = statement.executeQuery();
-            if(result.next()) {
-                System.out.printf("Id: %d Nome: %s UF: %s\n", result.getInt("id"), result.getString("nome"), result.getString("uf"));
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao executar consulta SQL: " + e.getMessage());
-        }
-    }
-
-    private  void listarEstados(Connection conn) {      
-        try {
-            System.out.println("Conexão realizada com sucesso");
-            var statement = conn.createStatement();
-            var result = statement.executeQuery("select * from estado");
-            while (result.next()) {
-                System.out.printf("Id: %d Nome: %s UF: %s\n", result.getInt("id"), result.getString("nome"), result.getString("uf"));
-            }
-               
-        } catch (SQLException e) {
-            System.err.println("Não foi possível executar a consulta ao banco: " + e.getMessage());
-        }
-    }
-
-    private  Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-    }
-
+/* 
     private  void carregarDriverJDBC() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -147,6 +113,6 @@ public class AppBd {
             } catch (ClassNotFoundException e) {
                 System.err.println("Não foi possível carregar a biblioteca para acesso ao banco de dados" + e.getMessage());
             }
-    }
+    } */
     }
 
