@@ -18,7 +18,12 @@ public class AppBd {
         try(var conn = ConnectionManager.getConnection()) {
         //    carregarDriverJDBC();            atualmente não precisamos mais carregar o driver
             var estadoDAO = new EstadoDAO(conn);
-            estadoDAO.listar();
+            var listaEstados = estadoDAO.listar();
+            for (var estado : listaEstados) {
+                System.out.println(estado);
+            }
+            
+            
             estadoDAO.localizar("TO"); 
 
             var marca = new Marca();
@@ -35,8 +40,8 @@ public class AppBd {
             produtoDAO.excluir(202L);
             produtoDAO.alterar(produto);
 
-            var dao = new DAO(conn);
-            dao.listar("produto");
+            //var dao = new DAO(conn);
+            //dao.listar("produto");
 
         } catch (SQLException e) {
             System.err.println("Não foi possível conectar ao banco de dados: " + e.getMessage());

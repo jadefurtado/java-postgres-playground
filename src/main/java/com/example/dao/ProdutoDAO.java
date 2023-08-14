@@ -5,15 +5,14 @@ import java.sql.SQLException;
 
 import com.example.model.Produto;
 
-public class ProdutoDAO {
-    private Connection conn;
+public class ProdutoDAO extends DAO {
 
     public ProdutoDAO(Connection conn) {
-        this.conn = conn;
+        super(conn);
     }
 
     public void excluir(long id) {
-        var sql = "detele from produto where id = ?";
+        var sql = "delete from produto where id = ?";
         try (var statement = conn.prepareStatement(sql)) {
             statement.setLong(1, id);
             if (statement.executeUpdate() == 1)
