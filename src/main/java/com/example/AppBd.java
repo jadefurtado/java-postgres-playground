@@ -2,7 +2,6 @@ package com.example;
 
 import java.sql.SQLException;
 import com.example.dao.ConnectionManager;
-import com.example.dao.DAO;
 import com.example.dao.EstadoDAO;
 import com.example.dao.ProdutoDAO;
 import com.example.model.Marca;
